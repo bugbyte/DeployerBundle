@@ -1,0 +1,75 @@
+# Deployer configuration (put in your config.yml
+#bugbyte_deployer:
+#    prod:
+        # the name of the project
+#       project_name: my_symfony2_project
+
+        # The script that does the database patching.
+#       database_patcher: vendor/bugbyte/deployer/database-patcher.php
+
+        # The script that moves directories (is needed) and creates the symlinks.
+#       datadir_patcher: vendor/bugbyte/deployer/datadir-patcher.php
+
+        # An array of filepaths that are renamed according to the deployment target.
+        #
+        # Example:
+        #     When you need different database credentials in production, add
+        #
+        #        app/config/parameters.yml
+        #
+        #     here and add the file
+        #
+        #        app/config/parameters.prod.yml
+        #
+        #     to your project.
+        #     After rsync is done, parameters.prod.yml will be renamed to parameters.yml
+        #
+        # This way you can have all settings in your project/VCS without conflicts.
+        #
+        # Note: using this with files containing php classes is dangerous, because files for other targets (eg. stage) are not removed,
+        #       and symfony's autoloader may use wrong file.
+        #
+#       target_specific_files: [ app/config/parameters.yml ]
+
+#       remote_host: my-remote-server-hostname
+#       remote_dir: /home/my_username/my_project
+#       remote_user: my_username
+#       rsync_excludes: app/config/rsync_exclude.txt
+
+        # Directories containing uploads etc. that are persistent and not tied to a specific version of a deployment.
+        # They are moved to a directory separate of the timestamped deployment directories and then symlinked to,
+        #  so they stay stay the same after each deployment or rollback.
+        #
+        # These directories are automatically added to the rsync excludes, no need to list them there aswell.
+        #
+        # This is how that looks like in a (pseudo-)directory tree:
+        #
+        # /<homedir>/prod
+        # /<homedir>/prod/data/                                         <- this holds the data dirs, in the same structure as the symfony project it belong to
+        # /<homedir>/prod/data/web/uploads                              <- this holds the uploads
+        # /<homedir>/prod/<projectname>_2012-06-21_134300/              <- this holds the symfony project you upload
+        # /<homedir>/prod/<projectname>_2012-06-21_134300/web/uploads   <- this is a symlink to ../../data/web/uploads
+        # /<homedir>/prod/<projectname>_2012-06-22_105400/              <- this holds the symfony project you upload
+        # /<homedir>/prod/<projectname>_2012-06-22_105400/web/uploads   <- this is a symlink to ../../data/web/uploads
+        #
+#       data_dirs:                      [ web/uploads ]
+
+
+#        # Directories that are scanned for database patches.
+#        # See the SQL_update interface for details.
+#        #
+#        database_dirs: [ src/MyCompany/MyBundle/sql-updates ]
+
+        # @todo support target_specific parameters.yml parsing
+#       database_name:
+#       database_user:
+
+        # Note: if one of the apc settings is empty/missing, apc handling will be turned off
+        # The relative path to the deployer's deploy version template file
+#       apc_deploy_version_template: vendor/bugbyte/deployer/apc/deploy_version_template.php
+
+        # The absolute path to where the template file should be copied to (this can be shared among multiple website)
+#       apc_deploy_version_path: /home/bertjan/deploy_version.php
+
+        # The url of the deployer's setrev script, to be called (with curl, on the remote host) to change the deployment timestamp in APC memory
+#        apc_deploy_setrev_url: api.bugbyte.nl/deployer/apc/setrev.php
