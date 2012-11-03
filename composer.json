@@ -12,6 +12,10 @@
     "require": {
         "bugbyte/deployer": "1.0.*"
     },
+    "autoload": {
+        "psr-0": { "Bugbyte\\Bundle\\DeployerBundle": "" }
+    },
+    "target-dir": "Bugbyte/Bundle/DeployerBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
