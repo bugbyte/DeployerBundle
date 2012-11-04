@@ -45,7 +45,7 @@
         # This is how that looks like in a (pseudo-)directory tree:
         #
         # /<homedir>/prod
-        # /<homedir>/prod/data/                                         <- this holds the data dirs, in the same structure as the symfony project it belong to
+        # /<homedir>/prod/data/                                         <- this holds the data dirs, in the same structure as the symfony project it belongs to
         # /<homedir>/prod/data/web/uploads                              <- this holds the uploads
         # /<homedir>/prod/<projectname>_2012-06-21_134300/              <- this holds the symfony project you upload
         # /<homedir>/prod/<projectname>_2012-06-21_134300/web/uploads   <- this is a symlink to ../../data/web/uploads

@@ -33,7 +33,6 @@ class DeployCommand extends ContainerAwareCommand
      */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		// your code here.
 		$action = $input->getArgument('action');
 
         if (!in_array($action, array('deploy', 'rollback', 'cleanup')))
@@ -48,7 +47,7 @@ class DeployCommand extends ContainerAwareCommand
 
         $deployer = new \Deploy(array(
             'project_name' => $config[$target]['project_name'],
-            'basedir' => dirname(dirname(dirname(dirname(dirname(__FILE__))))),
+            'basedir' => $this->getContainer()->get('kernel')->getRootDir() . DIRECTORY_SEPARATOR .'..',
             'remote_host' => $config[$target]['remote_host'],
             'remote_dir' => $config[$target]['remote_dir'],
             'remote_user' => $config[$target]['remote_user'],
@@ -58,8 +57,9 @@ class DeployCommand extends ContainerAwareCommand
             'database_name' => $config[$target]['database_name'],
             'database_user' => $config[$target]['database_user'],
             'target' => $target,
-            'database-patcher' => $config[$target]['database_patcher'],
-            'datadir-patcher' => $config[$target]['datadir_patcher'],
+	        'target_specific_files' => $config[$target]['target_specific_files'],
+            'database_patcher' => $config[$target]['database_patcher'],
+            'datadir_patcher' => $config[$target]['datadir_patcher'],
             'apc_deploy_version_template' => $config[$target]['apc_deploy_version_template'],
             'apc_deploy_version_path' => $config[$target]['apc_deploy_version_path'],
             'apc_deploy_setrev_url' => $config[$target]['apc_deploy_setrev_url'],
