@@ -49,6 +49,7 @@ class DeployCommand extends ContainerAwareCommand
             'project_name' => $config[$target]['project_name'],
             'basedir' => $this->getContainer()->get('kernel')->getRootDir() . DIRECTORY_SEPARATOR .'..',
             'remote_host' => $config[$target]['remote_host'],
+            'remote_port' => $config[$target]['remote_port'],
             'remote_dir' => $config[$target]['remote_dir'],
             'remote_user' => $config[$target]['remote_user'],
             'rsync_excludes' => $config[$target]['rsync_excludes'],
